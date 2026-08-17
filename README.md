@@ -19,7 +19,7 @@
   <!-- Cuatro columnas responsivas -->
   <div class="container-fluid mt-3">
     <h1>Cuatro columnas responsivas</h1>
-    <p>Primera Prueba miau</p>
+    <p>Prueba1</p>
     <div class="row g-2">
       <div class="col-sm-3 text-bg-primary">AZUL</div>
       <div class="col-sm-3 text-bg-dark">NEGRO</div>
@@ -31,7 +31,7 @@
   <!-- Juego de columnas -->
   <div class="container-fluid mt-4">
     <h1>Juego de columnas</h1>
-    <p>Segunda Prueba maw</p>
+    <p>Prueba2</p>
 
     <div class="row g-2 mb-2">
       <div class="col-sm-12 text-bg-primary">AZUL</div>
@@ -55,7 +55,7 @@
       <div class="col-sm-3 text-bg-warning">AMARILLO</div>
     </div>
 
-    <p>Tercera Prueba miw</p>
+    <p>Prueba3</p>
 
     <div class="row g-2 mb-2">
       <div class="col-sm-5 text-bg-primary">AZUL</div>
