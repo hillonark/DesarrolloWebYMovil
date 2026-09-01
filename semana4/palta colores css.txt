@@ -1,0 +1,7 @@
+paleta de colores pagina web
+#F0FFFF
+#F0F8FF
+#FF0000
+#FFFF00
+#008000
+
