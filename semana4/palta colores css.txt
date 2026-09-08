@@ -1,0 +1,7 @@
+paleta de colores pagina web
+#686868
+#536161
+#406868
+#237A7A
+#00A9A9
+
