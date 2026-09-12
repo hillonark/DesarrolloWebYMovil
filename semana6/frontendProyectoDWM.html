@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OfiExpress · Papelería, oficina y escolar</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --grey:#686868;
+  --slate:#536161;
+  --teal-dark:#406868;
+  --teal:#237A7A;
+  --teal-bright:#00A9A9;
+  --paper:#F6F7F6;
+  --ink:#2C3333;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  font-family:'Work Sans', sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+}
+
+h1,h2,h3,h4,.brand,.display-tab{
+  font-family:'Space Grotesk', sans-serif;
+}
+
+a{text-decoration:none;}
+
+/* ---------- NAVBAR ---------- */
+.navbar-ofi{
+  background:var(--teal-dark);
+  border-bottom:3px solid var(--teal-bright);
+  padding-top:.65rem;
+  padding-bottom:.65rem;
+}
+
+.navbar-ofi .btn-icon{
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:1.35rem;
+  padding:.25rem .5rem;
+  line-height:1;
+  position:relative;
+}
+.navbar-ofi .btn-icon:hover{color:var(--teal-bright);}
+
+.brand{
+  color:#fff !important;
+  font-weight:700;
+  font-size:1.4rem;
+  letter-spacing:.3px;
+}
+.brand .dot{color:var(--teal-bright);}
+
+.nav-ofi-link{
+  color:rgba(255,255,255,.85) !important;
+  font-weight:500;
+  padding:.4rem .9rem !important;
+  border-bottom:2px solid transparent;
+}
+.nav-ofi-link:hover{
+  color:#fff !important;
+  border-bottom:2px solid var(--teal-bright);
+}
+
+.cart-badge{
+  position:absolute;
+  top:-2px;
+  right:-2px;
+  background:var(--teal-bright);
+  color:var(--teal-dark);
+  font-size:.62rem;
+  font-weight:700;
+  min-width:17px;
+  height:17px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Work Sans',sans-serif;
+}
+
+/* ---------- OFFCANVAS MENU IZQUIERDO ---------- */
+.offcanvas-menu{
+  background:var(--slate);
+  color:#fff;
+  width:300px;
+}
+.offcanvas-menu .offcanvas-header{
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
+.offcanvas-menu .list-group-item{
+  background:transparent;
+  color:rgba(255,255,255,.9);
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  padding:.85rem .5rem;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+}
+.offcanvas-menu .list-group-item:hover{
+  background:rgba(0,169,169,.15);
+  color:var(--teal-bright);
+}
+.offcanvas-menu small{color:rgba(255,255,255,.55);}
+
+/* ---------- HERO / CATALOGO COMPLETO ---------- */
+.hero-strip{
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px, transparent 33px,
+      rgba(104,104,104,.14) 33px, rgba(104,104,104,.14) 34px
+    ),
+    #fff;
+  border-bottom:1px solid #e1e4e4;
+  padding:2.6rem 1rem 2.2rem;
+  text-align:center;
+  position:relative;
+}
+.hero-strip::before{
+  content:"";
+  position:absolute;
+  left:48px;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:rgba(0,169,169,.35);
+}
+@media (max-width:576px){.hero-strip::before{left:20px;}}
+
+.hero-eyebrow{
+  color:var(--teal);
+  font-weight:600;
+  letter-spacing:.4px;
+  font-size:.95rem;
+  margin-bottom:.35rem;
+}
+.hero-strip h1{
+  font-size:1.9rem;
+  font-weight:700;
+  color:var(--slate);
+  margin-bottom:1.1rem;
+}
+.btn-catalogo{
+  background:var(--teal-bright);
+  color:#fff;
+  font-weight:600;
+  padding:.7rem 2rem;
+  border-radius:2px;
+  border:none;
+  position:relative;
+  box-shadow:0 3px 0 var(--teal);
+  transition:transform .15s ease;
+}
+.btn-catalogo:hover{
+  color:#fff;
+  transform:translateY(2px);
+  box-shadow:0 1px 0 var(--teal);
+}
+
+/* ---------- CARRUSEL DE CATEGORIAS ---------- */
+.cat-section{padding:2.5rem 0 3rem;}
+.cat-section h2{
+  color:var(--slate);
+  font-weight:700;
+  font-size:1.5rem;
+  margin-bottom:1.4rem;
+}
+.cat-section h2 span{color:var(--teal-bright);}
+
+#categoriasCarrusel{
+  max-width:1100px;
+  margin:0 auto;
+}
+.cat-slide{
+  display:flex;
+  gap:1.2rem;
+  justify-content:center;
+  flex-wrap:nowrap;
+  padding:0 .5rem;
+}
+.cat-card{
+  background:#fff;
+  border:1px solid #e1e4e4;
+  width:230px;
+  min-height:230px;
+  padding:1.6rem 1.3rem;
+  clip-path:polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
+  position:relative;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.cat-card::after{
+  content:"";
+  position:absolute;
+  top:0; right:0;
+  border-width:0 28px 28px 0;
+  border-style:solid;
+  border-color:transparent var(--paper) transparent transparent;
+}
+.cat-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 22px rgba(64,104,104,.18);
+}
+.cat-card .bi{
+  font-size:1.9rem;
+  color:var(--teal-bright);
+  margin-bottom:.8rem;
+}
+.cat-card h3{
+  font-size:1.05rem;
+  font-weight:600;
+  color:var(--slate);
+  margin-bottom:.4rem;
+}
+.cat-card p{
+  font-size:.85rem;
+  color:var(--grey);
+  margin-bottom:.9rem;
+}
+.cat-card a{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--teal);
+}
+.cat-card a:hover{color:var(--teal-bright);}
+
+.carousel-control-prev,.carousel-control-next{
+  width:5%;
+  filter:invert(45%) sepia(15%) saturate(900%) hue-rotate(130deg);
+  opacity:.8;
+}
+.carousel-indicators [data-bs-target]{
+  background-color:var(--grey);
+}
+.carousel-indicators .active{
+  background-color:var(--teal-bright);
+}
+
+/* ---------- DESTACADOS ---------- */
+.destacados{background:#fff;padding:3rem 0;border-top:1px solid #e1e4e4;}
+.destacados h2{color:var(--slate);font-weight:700;font-size:1.5rem;margin-bottom:1.6rem;}
+.product-card{
+  border:1px solid #e1e4e4;
+  background:var(--paper);
+  border-radius:4px;
+  overflow:hidden;
+  height:100%;
+}
+.product-thumb{
+  height:130px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg, rgba(0,169,169,.12), rgba(64,104,104,.12));
+  font-size:2.6rem;
+  color:var(--teal);
+}
+.product-card .body{padding:1rem;}
+.product-card .cat-tag{
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  color:var(--teal);
+  font-weight:600;
+}
+.product-card h3{font-size:.98rem;font-weight:600;margin:.3rem 0 .5rem;color:var(--ink);}
+.product-card .price{font-weight:700;color:var(--slate);font-size:1.05rem;}
+.btn-add{
+  background:var(--teal-dark);
+  color:#fff;
+  border:none;
+  font-size:.85rem;
+  font-weight:600;
+  padding:.4rem .8rem;
+  border-radius:2px;
+}
+.btn-add:hover{background:var(--teal-bright);color:#fff;}
+
+/* ---------- CARRITO OFFCANVAS ---------- */
+.offcanvas-cart{width:100%;max-width:760px;}
+.offcanvas-cart .offcanvas-header{
+  background:var(--teal-dark);
+  color:#fff;
+}
+.sugerencias-col{
+  background:var(--paper);
+  border-right:1px solid #e1e4e4;
+  padding:1.2rem 1rem;
+}
+.sugerencias-col h6{
+  color:var(--slate);
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:.78rem;
+  letter-spacing:.4px;
+  margin-bottom:1rem;
+}
+.sugerencia-item{
+  display:flex;
+  gap:.7rem;
+  align-items:center;
+  padding:.6rem 0;
+  border-bottom:1px dashed #d8dcdc;
+}
+.sugerencia-item:last-child{border-bottom:none;}
+.sugerencia-item .icon{
+  width:42px;height:42px;flex:0 0 42px;
+  border-radius:4px;
+  background:#fff;
+  border:1px solid #e1e4e4;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);
+  font-size:1.15rem;
+}
+.sugerencia-item .info{flex:1;min-width:0;}
+.sugerencia-item .info p{margin:0;font-size:.82rem;font-weight:500;}
+.sugerencia-item .info small{color:var(--grey);}
+.sugerencia-item button{
+  border:1px solid var(--teal-bright);
+  background:#fff;
+  color:var(--teal-bright);
+  width:28px;height:28px;
+  border-radius:50%;
+  font-size:1rem;
+  line-height:1;
+  flex:0 0 28px;
+}
+.sugerencia-item button:hover{background:var(--teal-bright);color:#fff;}
+
+.carrito-col{padding:1.2rem 1.3rem;}
+.carrito-item{
+  display:flex;
+  gap:.8rem;
+  padding:.8rem 0;
+  border-bottom:1px solid #eef0f0;
+}
+.carrito-item .icon{
+  width:54px;height:54px;flex:0 0 54px;
+  border-radius:4px;
+  background:var(--paper);
+  border:1px solid #e1e4e4;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);
+  font-size:1.4rem;
+}
+.carrito-item .info{flex:1;min-width:0;}
+.carrito-item .info p{margin:0 0 .2rem;font-weight:600;font-size:.9rem;}
+.carrito-item .info small{color:var(--grey);}
+.qty-control{
+  display:flex;align-items:center;gap:.4rem;margin-top:.4rem;
+}
+.qty-control button{
+  width:24px;height:24px;border:1px solid var(--grey);background:#fff;border-radius:3px;line-height:1;font-size:.9rem;
+}
+.carrito-item .price-col{text-align:right;min-width:90px;}
+.carrito-item .remove-link{font-size:.75rem;color:var(--grey);}
+.carrito-item .remove-link:hover{color:#b04545;}
+
+.carrito-resumen{
+  background:var(--paper);
+  border-top:2px solid var(--teal-bright);
+  padding:1rem 0 0;
+  margin-top:1rem;
+}
+.carrito-resumen .total-row{
+  display:flex;justify-content:space-between;font-size:1.1rem;font-weight:700;color:var(--slate);margin-bottom:.9rem;
+}
+.btn-checkout{
+  background:var(--teal-bright);
+  color:#fff;border:none;font-weight:600;padding:.65rem 1rem;width:100%;border-radius:2px;
+}
+.btn-checkout:hover{background:var(--teal);color:#fff;}
+.empty-cart{text-align:center;color:var(--grey);padding:2rem 1rem;}
+.empty-cart .bi{font-size:2.2rem;color:#c9cece;margin-bottom:.6rem;display:block;}
+
+/* ---------- FOOTER ---------- */
+footer{
+  background:var(--slate);
+  color:rgba(255,255,255,.85);
+  padding:2.2rem 0 1.2rem;
+  margin-top:2rem;
+  font-size:.88rem;
+}
+footer h6{color:#fff;font-weight:700;margin-bottom:.8rem;}
+footer a{color:rgba(255,255,255,.75);}
+footer a:hover{color:var(--teal-bright);}
+footer .bottom-line{
+  border-top:1px solid rgba(255,255,255,.15);
+  margin-top:1.5rem;
+  padding-top:1rem;
+  text-align:center;
+  color:rgba(255,255,255,.55);
+  font-size:.78rem;
+}
+
+.toast-ofi{
+  background:var(--teal-dark);
+  color:#fff;
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-ofi navbar-expand-lg sticky-top">
+  <div class="container-fluid px-3 px-lg-4">
+
+    <!-- Hamburguesa -> menú lateral izquierdo (primera opción) -->
+    <button class="btn-icon me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-label="Abrir menú de categorías">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <a class="navbar-brand brand me-3" href="#inicio">Ofi<span class="dot">Express</span></a>
+
+    <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+      <i class="bi bi-three-dots-vertical text-white fs-4"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="#marcas">Marcas</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="#oficina">Oficina</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="#escolar">Escolar</a></li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 ms-auto">
+      <button class="btn-icon" type="button" title="Iniciar sesión">
+        <i class="bi bi-person-circle"></i>
+      </button>
+      <button class="btn-icon position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" title="Carro de compras">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== OFFCANVAS MENÚ LATERAL ===================== -->
+<div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="menuLateral">
+  <div class="offcanvas-header">
+    <h5 class="mb-0">Categorías</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="list-group list-group-flush">
+      <a href="#catalogo" class="list-group-item"><i class="bi bi-grid-3x3-gap"></i> Catálogo completo</a>
+      <a href="#marcas" class="list-group-item"><i class="bi bi-tags"></i> Marcas</a>
+      <a href="#oficina" class="list-group-item"><i class="bi bi-briefcase"></i> Oficina</a>
+      <a href="#escolar" class="list-group-item"><i class="bi bi-backpack2"></i> Escolar</a>
+      <a href="#destacados" class="list-group-item"><i class="bi bi-palette"></i> Arte y manualidades</a>
+      <a href="#destacados" class="list-group-item"><i class="bi bi-printer"></i> Impresoras y tecnología</a>
+      <a href="#destacados" class="list-group-item"><i class="bi bi-percent"></i> Ofertas</a>
+    </div>
+    <div class="px-3 pt-4">
+      <small>¿Necesitas ayuda?</small>
+      <p class="mb-0"><a href="#" class="text-white fw-semibold">Contáctanos <i class="bi bi-arrow-right-short"></i></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== OFFCANVAS CARRITO ===================== -->
+<div class="offcanvas offcanvas-end offcanvas-cart" tabindex="-1" id="carritoOffcanvas">
+  <div class="offcanvas-header">
+    <h5 class="mb-0"><i class="bi bi-cart3 me-2"></i>Mi carro</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="row g-0 h-100">
+
+      <!-- Sugerencias (izquierda) -->
+      <div class="col-12 col-md-4 sugerencias-col order-2 order-md-1">
+        <h6>Sugerencias para ti</h6>
+        <div id="sugerenciasList"></div>
+      </div>
+
+      <!-- Ítems del carro (derecha) -->
+      <div class="col-12 col-md-8 carrito-col order-1 order-md-2 d-flex flex-column">
+        <div id="carritoLista" class="flex-grow-1" style="overflow-y:auto;"></div>
+
+        <div class="carrito-resumen">
+          <div class="total-row">
+            <span>Total</span>
+            <span id="carritoTotal">$0</span>
+          </div>
+          <button class="btn-checkout" id="btnCheckout">Ir a pagar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HERO: VER CATÁLOGO COMPLETO ===================== -->
+<section class="hero-strip" id="inicio">
+  <p class="hero-eyebrow">Todo para tu oficina, colegio y proyectos creativos</p>
+  <h1>Encuentra lo que necesitas en un solo lugar</h1>
+  <a href="#catalogo" class="btn btn-catalogo">Ver catálogo completo</a>
+</section>
+
+<!-- ===================== CARRUSEL DE CATEGORÍAS ===================== -->
+<section class="cat-section" id="catalogo">
+  <div class="container text-center">
+    <h2>Compra por <span>categoría</span></h2>
+
+    <div id="categoriasCarrusel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#categoriasCarrusel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#categoriasCarrusel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#categoriasCarrusel" data-bs-slide-to="2"></button>
+      </div>
+
+      <div class="carousel-inner py-2">
+        <div class="carousel-item active">
+          <div class="cat-slide flex-wrap">
+            <div class="cat-card">
+              <i class="bi bi-printer"></i>
+              <h3>Impresoras</h3>
+              <p>Multifuncionales, tinta y tóner para tu oficina o casa.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-pencil"></i>
+              <h3>Escritura</h3>
+              <p>Lápices, lapiceras, plumones y correctores.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-palette2"></i>
+              <h3>Pintura</h3>
+              <p>Témperas, acuarelas, pinceles y set de colores.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="cat-slide flex-wrap">
+            <div class="cat-card">
+              <i class="bi bi-box-seam"></i>
+              <h3>Escultura</h3>
+              <p>Plasticina, greda y materiales de modelado.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-backpack2"></i>
+              <h3>Escolar</h3>
+              <p>Cuadernos, mochilas y útiles para el colegio.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-briefcase"></i>
+              <h3>Oficina</h3>
+              <p>Archivadores, organizadores y suministros.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="cat-slide flex-wrap">
+            <div class="cat-card">
+              <i class="bi bi-calculator"></i>
+              <h3>Tecnología</h3>
+              <p>Calculadoras, pendrives y accesorios digitales.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-gift"></i>
+              <h3>Regalos</h3>
+              <p>Sets de escritorio y artículos de papelería fina.</p>
+              <a href="#destacados">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-tags"></i>
+              <h3>Marcas</h3>
+              <p>Productos de las marcas líderes en papelería.</p>
+              <a href="#marcas">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#categoriasCarrusel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#categoriasCarrusel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DESTACADOS / PRODUCTOS ===================== -->
+<section class="destacados" id="destacados">
+  <div class="container">
+    <h2>Productos destacados</h2>
+    <div class="row g-3" id="productosGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <h6>OfiExpress</h6>
+        <p class="mb-0">Papelería, oficina y artículos escolares con despacho a todo el país.</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Categorías</h6>
+        <p class="mb-1"><a href="#oficina">Oficina</a></p>
+        <p class="mb-1"><a href="#escolar">Escolar</a></p>
+        <p class="mb-0"><a href="#marcas">Marcas</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Ayuda</h6>
+        <p class="mb-1"><a href="#">Despachos</a></p>
+        <p class="mb-1"><a href="#">Cambios y devoluciones</a></p>
+        <p class="mb-0"><a href="#">Contacto</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Síguenos</h6>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-line">© 2026 OfiExpress. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<!-- Toast de confirmación -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080;">
+  <div id="toastAdd" class="toast toast-ofi" role="alert">
+    <div class="d-flex">
+      <div class="toast-body"><i class="bi bi-check-circle me-2"></i><span id="toastMsg">Producto añadido al carro</span></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ================= DATOS DE PRODUCTOS ================= */
+const productos = [
+  { id: 1, nombre: "Cuaderno universitario 100 hojas", cat: "Escolar", precio: 2990, icono: "bi-journal-bookmark" },
+  { id: 2, nombre: "Set de lápices de colores x24", cat: "Pintura", precio: 5990, icono: "bi-palette2" },
+  { id: 3, nombre: "Impresora multifuncional láser", cat: "Impresoras", precio: 89990, icono: "bi-printer" },
+  { id: 4, nombre: "Archivador oficio lomo ancho", cat: "Oficina", precio: 3490, icono: "bi-archive" },
+  { id: 5, nombre: "Plasticina x12 colores", cat: "Escultura", precio: 2490, icono: "bi-box-seam" },
+  { id: 6, nombre: "Set de plumones caligráficos", cat: "Escritura", precio: 6990, icono: "bi-pencil" },
+];
+
+const sugerencias = [
+  { id: 101, nombre: "Goma de borrar blanca", precio: 490, icono: "bi-eraser" },
+  { id: 102, nombre: "Corrector líquido 20ml", precio: 990, icono: "bi-droplet" },
+  { id: 103, nombre: "Post-it x100 hojas", precio: 1490, icono: "bi-sticky" },
+  { id: 104, nombre: "Caja de clips metálicos", precio: 790, icono: "bi-paperclip" },
+];
+
+let carrito = []; // {id, nombre, precio, icono, cantidad}
+
+/* ================= UTILIDADES ================= */
+function formatoCLP(valor) {
+  return "$" + valor.toLocaleString("es-CL");
+}
+
+function buscarProducto(id) {
+  return productos.find(p => p.id === id) || sugerencias.find(p => p.id === id);
+}
+
+/* ================= RENDER: PRODUCTOS DESTACADOS ================= */
+function renderProductos() {
+  const grid = document.getElementById("productosGrid");
+  grid.innerHTML = productos.map(p => `
+    <div class="col-6 col-md-4 col-lg-2">
+      <div class="product-card">
+        <div class="product-thumb"><i class="bi ${p.icono}"></i></div>
+        <div class="body">
+          <div class="cat-tag">${p.cat}</div>
+          <h3>${p.nombre}</h3>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="price">${formatoCLP(p.precio)}</span>
+            <button class="btn-add" onclick="agregarAlCarro(${p.id})"><i class="bi bi-plus-lg"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+/* ================= RENDER: SUGERENCIAS EN EL CARRO ================= */
+function renderSugerencias() {
+  const cont = document.getElementById("sugerenciasList");
+  cont.innerHTML = sugerencias.map(s => `
+    <div class="sugerencia-item">
+      <div class="icon"><i class="bi ${s.icono}"></i></div>
+      <div class="info">
+        <p>${s.nombre}</p>
+        <small>${formatoCLP(s.precio)}</small>
+      </div>
+      <button onclick="agregarAlCarro(${s.id})" title="Añadir"><i class="bi bi-plus"></i></button>
+    </div>
+  `).join("");
+}
+
+/* ================= RENDER: CARRO ================= */
+function renderCarrito() {
+  const lista = document.getElementById("carritoLista");
+  const badge = document.getElementById("cartBadge");
+  const totalEl = document.getElementById("carritoTotal");
+
+  const totalUnidades = carrito.reduce((acc, i) => acc + i.cantidad, 0);
+  const totalPrecio = carrito.reduce((acc, i) => acc + i.cantidad * i.precio, 0);
+
+  badge.textContent = totalUnidades;
+  totalEl.textContent = formatoCLP(totalPrecio);
+
+  if (carrito.length === 0) {
+    lista.innerHTML = `
+      <div class="empty-cart">
+        <i class="bi bi-cart-x"></i>
+        <p class="mb-0">Tu carro está vacío.</p>
+        <small>Agrega productos desde el catálogo o las sugerencias.</small>
+      </div>`;
+    return;
+  }
+
+  lista.innerHTML = carrito.map(item => `
+    <div class="carrito-item">
+      <div class="icon"><i class="bi ${item.icono}"></i></div>
+      <div class="info">
+        <p>${item.nombre}</p>
+        <small>${formatoCLP(item.precio)} c/u</small>
+        <div class="qty-control">
+          <button onclick="cambiarCantidad(${item.id}, -1)">-</button>
+          <span>${item.cantidad}</span>
+          <button onclick="cambiarCantidad(${item.id}, 1)">+</button>
+        </div>
+      </div>
+      <div class="price-col">
+        <div class="fw-semibold">${formatoCLP(item.precio * item.cantidad)}</div>
+        <a href="#" class="remove-link" onclick="eliminarDelCarro(${item.id});return false;">Eliminar</a>
+      </div>
+    </div>
+  `).join("");
+}
+
+/* ================= ACCIONES DEL CARRO ================= */
+function agregarAlCarro(id) {
+  const producto = buscarProducto(id);
+  if (!producto) return;
+
+  const existente = carrito.find(i => i.id === id);
+  if (existente) {
+    existente.cantidad += 1;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+  renderCarrito();
+  mostrarToast(`${producto.nombre} añadido al carro`);
+}
+
+function cambiarCantidad(id, delta) {
+  const item = carrito.find(i => i.id === id);
+  if (!item) return;
+  item.cantidad += delta;
+  if (item.cantidad <= 0) {
+    carrito = carrito.filter(i => i.id !== id);
+  }
+  renderCarrito();
+}
+
+function eliminarDelCarro(id) {
+  carrito = carrito.filter(i => i.id !== id);
+  renderCarrito();
+}
+
+function mostrarToast(mensaje) {
+  document.getElementById("toastMsg").textContent = mensaje;
+  const toastEl = document.getElementById("toastAdd");
+  bootstrap.Toast.getOrCreateInstance(toastEl, { delay: 1800 }).show();
+}
+
+document.getElementById("btnCheckout").addEventListener("click", () => {
+  if (carrito.length === 0) {
+    mostrarToast("Tu carro está vacío");
+    return;
+  }
+  mostrarToast("Redirigiendo a pago...");
+});
+
+/* ================= INIT ================= */
+renderProductos();
+renderSugerencias();
+renderCarrito();
+</script>
+</body>
+</html>
