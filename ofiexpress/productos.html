@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos · OfiExpress</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Estilos compartidos -->
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-ofi navbar-expand-lg sticky-top">
+  <div class="container-fluid px-3 px-lg-4">
+
+    <!-- Hamburguesa -> menú lateral izquierdo -->
+    <button class="btn-icon me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-label="Abrir menú de categorías">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <a class="navbar-brand brand me-3" href="index.html">Ofi<span class="dot">Express</span></a>
+
+    <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Mostrar enlaces">
+      <i class="bi bi-three-dots-vertical text-white fs-4"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link nav-ofi-link active" href="productos.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html#marcas">Marcas</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Oficina">Oficina</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Escolar">Escolar</a></li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 ms-auto">
+      <a class="btn-icon" href="login.html" id="navSesion" title="Iniciar sesión">
+        <i class="bi bi-person-circle"></i>
+        <span class="nav-user-name d-none d-md-inline" id="navSesionNombre"></span>
+      </a>
+      <a class="btn-icon position-relative" href="carrito.html" title="Carro de compras" aria-label="Ir al carro de compras">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ===================== OFFCANVAS MENÚ LATERAL ===================== -->
+<div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="menuLateral">
+  <div class="offcanvas-header">
+    <h5 class="mb-0">Categorías</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="list-group list-group-flush">
+      <a href="productos.html" class="list-group-item"><i class="bi bi-grid-3x3-gap"></i> Catálogo completo</a>
+      <a href="productos.html#marcas" class="list-group-item"><i class="bi bi-tags"></i> Marcas</a>
+      <a href="productos.html?cat=Oficina" class="list-group-item"><i class="bi bi-briefcase"></i> Oficina</a>
+      <a href="productos.html?cat=Escolar" class="list-group-item"><i class="bi bi-backpack2"></i> Escolar</a>
+      <a href="productos.html?cat=Pintura" class="list-group-item"><i class="bi bi-palette"></i> Arte y manualidades</a>
+      <a href="productos.html?cat=Impresoras" class="list-group-item"><i class="bi bi-printer"></i> Impresoras y tecnología</a>
+      <a href="productos.html?oferta=1" class="list-group-item"><i class="bi bi-percent"></i> Ofertas</a>
+    </div>
+    <div class="px-3 pt-4">
+      <small>¿Necesitas ayuda?</small>
+      <p class="mb-0"><a href="#" class="text-white fw-semibold">Contáctanos <i class="bi bi-arrow-right-short"></i></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CABECERA ===================== -->
+<section class="hero-strip hero-mini">
+  <p class="hero-eyebrow">Catálogo OfiExpress</p>
+  <h1 id="tituloListado">Catálogo completo</h1>
+</section>
+
+<!-- ===================== LISTADO ===================== -->
+<section class="catalogo-section">
+  <div class="container">
+
+    <!-- Filtros -->
+    <div class="toolbar">
+      <div class="row g-3 align-items-end mb-3">
+        <div class="col-12 col-md-7">
+          <label for="buscador" class="filtro-label">Buscar producto</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white" style="border-radius:2px 0 0 2px;border-color:#cfd5d5;"><i class="bi bi-search text-secondary"></i></span>
+            <input type="search" id="buscador" class="form-control" placeholder="Cuadernos, plumones, impresoras..." autocomplete="off">
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <label for="orden" class="filtro-label">Ordenar por</label>
+          <select id="orden" class="form-select" style="border-radius:2px;border-color:#cfd5d5;">
+            <option value="relevancia">Relevancia</option>
+            <option value="precio-asc">Menor precio</option>
+            <option value="precio-desc">Mayor precio</option>
+            <option value="nombre">Nombre (A–Z)</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-2">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="soloOfertas">
+            <label class="form-check-label" for="soloOfertas">Solo ofertas</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <span class="filtro-label">Categoría</span>
+        <div class="chips" id="chipsCat"></div>
+      </div>
+
+      <div id="marcas">
+        <span class="filtro-label">Marca</span>
+        <div class="chips" id="chipsMarca"></div>
+      </div>
+    </div>
+
+    <!-- Resultado -->
+    <div class="resultado-info">
+      <span id="contador" aria-live="polite"></span>
+      <button class="link-limpiar d-none" id="btnLimpiar" type="button"><i class="bi bi-x-circle me-1"></i>Limpiar filtros</button>
+    </div>
+
+    <div class="row g-3" id="productosGrid"></div>
+
+    <div class="empty-state d-none" id="sinResultados">
+      <i class="bi bi-search"></i>
+      <p class="mb-1 fw-semibold">No encontramos productos con esos filtros.</p>
+      <p class="mb-0">Prueba con otra búsqueda o <a href="#" id="linkLimpiar2" class="fw-semibold" style="color:var(--teal);">limpia los filtros</a>.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <h6>OfiExpress</h6>
+        <p class="mb-0">Papelería, oficina y artículos escolares con despacho a todo el país.</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Categorías</h6>
+        <p class="mb-1"><a href="productos.html?cat=Oficina">Oficina</a></p>
+        <p class="mb-1"><a href="productos.html?cat=Escolar">Escolar</a></p>
+        <p class="mb-0"><a href="productos.html#marcas">Marcas</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Ayuda</h6>
+        <p class="mb-1"><a href="#">Despachos</a></p>
+        <p class="mb-1"><a href="#">Cambios y devoluciones</a></p>
+        <p class="mb-0"><a href="#">Contacto</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Síguenos</h6>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-line">© 2026 OfiExpress. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+  /* ================= ESTADO DE FILTROS (se lee de la URL) ================= */
+  const marcas = [...new Set(productos.map(p => p.marca))].sort((a, b) => a.localeCompare(b, "es"));
+  const ORDENES = ["relevancia", "precio-asc", "precio-desc", "nombre"];
+  const params = new URLSearchParams(location.search);
+
+  const estado = {
+    cat:    CATEGORIAS.includes(params.get("cat")) ? params.get("cat") : "Todas",
+    marca:  marcas.includes(params.get("marca")) ? params.get("marca") : "Todas",
+    oferta: params.get("oferta") === "1",
+    q:      (params.get("q") || "").trim(),
+    orden:  ORDENES.includes(params.get("orden")) ? params.get("orden") : "relevancia",
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const normalizar = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  /* ================= FILTRAR Y ORDENAR ================= */
+  function filtrar() {
+    const q = normalizar(estado.q);
+    let lista = productos.filter(p =>
+      (estado.cat === "Todas"   || p.cat === estado.cat) &&
+      (estado.marca === "Todas" || p.marca === estado.marca) &&
+      (!estado.oferta || p.antes) &&
+      (!q || normalizar(`${p.nombre} ${p.marca} ${p.cat}`).includes(q))
+    );
+
+    if (estado.orden === "precio-asc")  lista.sort((a, b) => a.precio - b.precio);
+    if (estado.orden === "precio-desc") lista.sort((a, b) => b.precio - a.precio);
+    if (estado.orden === "nombre")      lista.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+    return lista;
+  }
+
+  /* ================= RENDER ================= */
+  function chip(valor, texto, cuenta, activo, attr) {
+    return `<button type="button" class="chip${activo ? " active" : ""}" ${attr}="${valor}" aria-pressed="${activo}">${texto} <small>${cuenta}</small></button>`;
+  }
+
+  function renderChips() {
+    $("chipsCat").innerHTML =
+      chip("Todas", "Todas", productos.length, estado.cat === "Todas", "data-cat") +
+      CATEGORIAS.map(c => chip(c, c, productos.filter(p => p.cat === c).length, estado.cat === c, "data-cat")).join("");
+
+    $("chipsMarca").innerHTML =
+      chip("Todas", "Todas", productos.length, estado.marca === "Todas", "data-marca") +
+      marcas.map(m => chip(m, m, productos.filter(p => p.marca === m).length, estado.marca === m, "data-marca")).join("");
+  }
+
+  function tituloActual() {
+    if (estado.oferta && estado.cat === "Todas" && estado.marca === "Todas") return "Ofertas";
+    if (estado.cat !== "Todas") return estado.cat;
+    if (estado.marca !== "Todas") return estado.marca;
+    return "Catálogo completo";
+  }
+
+  function hayFiltros() {
+    return estado.cat !== "Todas" || estado.marca !== "Todas" || estado.oferta || estado.q !== "";
+  }
+
+  function sincronizarURL() {
+    const p = new URLSearchParams();
+    if (estado.cat !== "Todas")   p.set("cat", estado.cat);
+    if (estado.marca !== "Todas") p.set("marca", estado.marca);
+    if (estado.oferta)            p.set("oferta", "1");
+    if (estado.q)                 p.set("q", estado.q);
+    if (estado.orden !== "relevancia") p.set("orden", estado.orden);
+    const qs = p.toString();
+    try {
+      history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + location.hash);
+    } catch (e) { /* algunos navegadores lo bloquean con file:// */ }
+  }
+
+  function render() {
+    const lista = filtrar();
+    const titulo = tituloActual();
+
+    $("tituloListado").textContent = titulo;
+    document.title = `${titulo} · OfiExpress`;
+    $("contador").textContent = `${lista.length} ${lista.length === 1 ? "producto" : "productos"}`;
+    $("btnLimpiar").classList.toggle("d-none", !hayFiltros());
+
+    $("productosGrid").innerHTML = lista.map(p => `
+      <div class="col-6 col-md-4 col-lg-3">${tarjetaProducto(p)}</div>
+    `).join("");
+    $("sinResultados").classList.toggle("d-none", lista.length > 0);
+
+    renderChips();
+    sincronizarURL();
+  }
+
+  /* ================= EVENTOS ================= */
+  $("chipsCat").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-cat]");
+    if (!b) return;
+    estado.cat = b.dataset.cat;
+    render();
+  });
+
+  $("chipsMarca").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-marca]");
+    if (!b) return;
+    estado.marca = b.dataset.marca;
+    render();
+  });
+
+  $("buscador").addEventListener("input", (e) => { estado.q = e.target.value.trim(); render(); });
+  $("orden").addEventListener("change", (e) => { estado.orden = e.target.value; render(); });
+  $("soloOfertas").addEventListener("change", (e) => { estado.oferta = e.target.checked; render(); });
+
+  function limpiarFiltros(e) {
+    if (e) e.preventDefault();
+    Object.assign(estado, { cat: "Todas", marca: "Todas", oferta: false, q: "", orden: "relevancia" });
+    $("buscador").value = "";
+    $("orden").value = "relevancia";
+    $("soloOfertas").checked = false;
+    render();
+  }
+  $("btnLimpiar").addEventListener("click", limpiarFiltros);
+  $("linkLimpiar2").addEventListener("click", limpiarFiltros);
+
+  /* ================= INIT ================= */
+  $("buscador").value = estado.q;
+  $("orden").value = estado.orden;
+  $("soloOfertas").checked = estado.oferta;
+  render();
+</script>
+
+</body>
+</html>

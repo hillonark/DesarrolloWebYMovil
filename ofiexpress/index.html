@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OfiExpress · Papelería, oficina y escolar</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Estilos compartidos -->
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-ofi navbar-expand-lg sticky-top">
+  <div class="container-fluid px-3 px-lg-4">
+
+    <!-- Hamburguesa -> menú lateral izquierdo -->
+    <button class="btn-icon me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-label="Abrir menú de categorías">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <a class="navbar-brand brand me-3" href="index.html">Ofi<span class="dot">Express</span></a>
+
+    <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Mostrar enlaces">
+      <i class="bi bi-three-dots-vertical text-white fs-4"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html#marcas">Marcas</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Oficina">Oficina</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Escolar">Escolar</a></li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 ms-auto">
+      <a class="btn-icon" href="login.html" id="navSesion" title="Iniciar sesión">
+        <i class="bi bi-person-circle"></i>
+        <span class="nav-user-name d-none d-md-inline" id="navSesionNombre"></span>
+      </a>
+      <a class="btn-icon position-relative" href="carrito.html" title="Carro de compras" aria-label="Ir al carro de compras">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ===================== OFFCANVAS MENÚ LATERAL ===================== -->
+<div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="menuLateral">
+  <div class="offcanvas-header">
+    <h5 class="mb-0">Categorías</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="list-group list-group-flush">
+      <a href="productos.html" class="list-group-item"><i class="bi bi-grid-3x3-gap"></i> Catálogo completo</a>
+      <a href="productos.html#marcas" class="list-group-item"><i class="bi bi-tags"></i> Marcas</a>
+      <a href="productos.html?cat=Oficina" class="list-group-item"><i class="bi bi-briefcase"></i> Oficina</a>
+      <a href="productos.html?cat=Escolar" class="list-group-item"><i class="bi bi-backpack2"></i> Escolar</a>
+      <a href="productos.html?cat=Pintura" class="list-group-item"><i class="bi bi-palette"></i> Arte y manualidades</a>
+      <a href="productos.html?cat=Impresoras" class="list-group-item"><i class="bi bi-printer"></i> Impresoras y tecnología</a>
+      <a href="productos.html?oferta=1" class="list-group-item"><i class="bi bi-percent"></i> Ofertas</a>
+    </div>
+    <div class="px-3 pt-4">
+      <small>¿Necesitas ayuda?</small>
+      <p class="mb-0"><a href="#" class="text-white fw-semibold">Contáctanos <i class="bi bi-arrow-right-short"></i></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HERO: VER CATÁLOGO COMPLETO ===================== -->
+<section class="hero-strip" id="inicio">
+  <p class="hero-eyebrow">Todo para tu oficina, colegio y proyectos creativos</p>
+  <h1>Encuentra lo que necesitas en un solo lugar</h1>
+  <a href="productos.html" class="btn btn-catalogo">Ver catálogo completo</a>
+</section>
+
+<!-- ===================== CARRUSEL DE CATEGORÍAS ===================== -->
+<section class="cat-section" id="catalogo">
+  <div class="container text-center">
+    <h2>Compra por <span>categoría</span></h2>
+
+    <div id="categoriasCarrusel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#categoriasCarrusel" data-bs-slide-to="0" class="active" aria-label="Diapositiva 1"></button>
+        <button type="button" data-bs-target="#categoriasCarrusel" data-bs-slide-to="1" aria-label="Diapositiva 2"></button>
+        <button type="button" data-bs-target="#categoriasCarrusel" data-bs-slide-to="2" aria-label="Diapositiva 3"></button>
+      </div>
+
+      <div class="carousel-inner py-2">
+        <div class="carousel-item active">
+          <div class="cat-slide flex-wrap">
+            <div class="cat-card">
+              <i class="bi bi-printer"></i>
+              <h3>Impresoras</h3>
+              <p>Multifuncionales, tinta y tóner para tu oficina o casa.</p>
+              <a href="productos.html?cat=Impresoras">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-pencil"></i>
+              <h3>Escritura</h3>
+              <p>Lápices, lapiceras, plumones y correctores.</p>
+              <a href="productos.html?cat=Escritura">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-palette2"></i>
+              <h3>Pintura</h3>
+              <p>Témperas, acuarelas, pinceles y set de colores.</p>
+              <a href="productos.html?cat=Pintura">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="cat-slide flex-wrap">
+            <div class="cat-card">
+              <i class="bi bi-box-seam"></i>
+              <h3>Escultura</h3>
+              <p>Plasticina, greda y materiales de modelado.</p>
+              <a href="productos.html?cat=Escultura">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-backpack2"></i>
+              <h3>Escolar</h3>
+              <p>Cuadernos, mochilas y útiles para el colegio.</p>
+              <a href="productos.html?cat=Escolar">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-briefcase"></i>
+              <h3>Oficina</h3>
+              <p>Archivadores, organizadores y suministros.</p>
+              <a href="productos.html?cat=Oficina">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="cat-slide flex-wrap">
+            <div class="cat-card">
+              <i class="bi bi-calculator"></i>
+              <h3>Tecnología</h3>
+              <p>Calculadoras, pendrives y accesorios digitales.</p>
+              <a href="productos.html?cat=Tecnología">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-gift"></i>
+              <h3>Regalos</h3>
+              <p>Sets de escritorio y artículos de papelería fina.</p>
+              <a href="productos.html?cat=Regalos">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+            <div class="cat-card">
+              <i class="bi bi-tags"></i>
+              <h3>Marcas</h3>
+              <p>Productos de las marcas líderes en papelería.</p>
+              <a href="productos.html#marcas">Explorar <i class="bi bi-arrow-right-short"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#categoriasCarrusel" data-bs-slide="prev" aria-label="Anterior">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#categoriasCarrusel" data-bs-slide="next" aria-label="Siguiente">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DESTACADOS ===================== -->
+<section class="destacados" id="destacados">
+  <div class="container">
+    <h2>Productos destacados</h2>
+    <div class="row g-3" id="productosGrid"></div>
+    <div class="ver-todos">
+      <a href="productos.html" class="btn-outline-ofi">Ver todos los productos</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <h6>OfiExpress</h6>
+        <p class="mb-0">Papelería, oficina y artículos escolares con despacho a todo el país.</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Categorías</h6>
+        <p class="mb-1"><a href="productos.html?cat=Oficina">Oficina</a></p>
+        <p class="mb-1"><a href="productos.html?cat=Escolar">Escolar</a></p>
+        <p class="mb-0"><a href="productos.html#marcas">Marcas</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Ayuda</h6>
+        <p class="mb-1"><a href="#">Despachos</a></p>
+        <p class="mb-1"><a href="#">Cambios y devoluciones</a></p>
+        <p class="mb-0"><a href="#">Contacto</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Síguenos</h6>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-line">© 2026 OfiExpress. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+  // Los 6 primeros productos son los destacados
+  document.getElementById("productosGrid").innerHTML = productos.slice(0, 6).map(p => `
+    <div class="col-6 col-md-4 col-lg-2">${tarjetaProducto(p)}</div>
+  `).join("");
+</script>
+
+</body>
+</html>

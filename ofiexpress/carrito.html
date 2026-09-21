@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi carro · OfiExpress</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Estilos compartidos -->
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-ofi navbar-expand-lg sticky-top">
+  <div class="container-fluid px-3 px-lg-4">
+
+    <!-- Hamburguesa -> menú lateral izquierdo -->
+    <button class="btn-icon me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-label="Abrir menú de categorías">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <a class="navbar-brand brand me-3" href="index.html">Ofi<span class="dot">Express</span></a>
+
+    <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Mostrar enlaces">
+      <i class="bi bi-three-dots-vertical text-white fs-4"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html#marcas">Marcas</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Oficina">Oficina</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Escolar">Escolar</a></li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 ms-auto">
+      <a class="btn-icon" href="login.html" id="navSesion" title="Iniciar sesión">
+        <i class="bi bi-person-circle"></i>
+        <span class="nav-user-name d-none d-md-inline" id="navSesionNombre"></span>
+      </a>
+      <a class="btn-icon position-relative" href="carrito.html" title="Carro de compras" aria-label="Ir al carro de compras">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ===================== OFFCANVAS MENÚ LATERAL ===================== -->
+<div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="menuLateral">
+  <div class="offcanvas-header">
+    <h5 class="mb-0">Categorías</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="list-group list-group-flush">
+      <a href="productos.html" class="list-group-item"><i class="bi bi-grid-3x3-gap"></i> Catálogo completo</a>
+      <a href="productos.html#marcas" class="list-group-item"><i class="bi bi-tags"></i> Marcas</a>
+      <a href="productos.html?cat=Oficina" class="list-group-item"><i class="bi bi-briefcase"></i> Oficina</a>
+      <a href="productos.html?cat=Escolar" class="list-group-item"><i class="bi bi-backpack2"></i> Escolar</a>
+      <a href="productos.html?cat=Pintura" class="list-group-item"><i class="bi bi-palette"></i> Arte y manualidades</a>
+      <a href="productos.html?cat=Impresoras" class="list-group-item"><i class="bi bi-printer"></i> Impresoras y tecnología</a>
+      <a href="productos.html?oferta=1" class="list-group-item"><i class="bi bi-percent"></i> Ofertas</a>
+    </div>
+    <div class="px-3 pt-4">
+      <small>¿Necesitas ayuda?</small>
+      <p class="mb-0"><a href="#" class="text-white fw-semibold">Contáctanos <i class="bi bi-arrow-right-short"></i></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CABECERA ===================== -->
+<section class="hero-strip hero-mini">
+  <p class="hero-eyebrow">Revisa tu compra antes de pagar</p>
+  <h1><i class="bi bi-cart3 me-2"></i>Mi carro</h1>
+</section>
+
+<!-- ===================== CARRO ===================== -->
+<section class="carro-page">
+  <div class="container">
+    <div class="carro-panel">
+      <div class="row g-0">
+
+        <!-- Sugerencias (izquierda) -->
+        <div class="col-12 col-md-4 sugerencias-col order-2 order-md-1">
+          <h6>Sugerencias para ti</h6>
+          <div id="sugerenciasList"></div>
+        </div>
+
+        <!-- Ítems del carro (derecha) -->
+        <div class="col-12 col-md-8 carrito-col order-1 order-md-2 d-flex flex-column">
+          <div class="carrito-head">
+            <h2>Productos <span class="text-secondary fw-normal fs-6" id="carritoCuenta"></span></h2>
+            <button class="link-limpiar" id="btnVaciar" type="button"><i class="bi bi-trash3 me-1"></i>Vaciar carro</button>
+          </div>
+
+          <div id="carritoLista" class="flex-grow-1"></div>
+
+          <div class="carrito-resumen">
+            <div class="fila"><span>Subtotal</span><span id="carritoSubtotal">$0</span></div>
+            <div class="fila"><span>Despacho</span><span>Se calcula al pagar</span></div>
+            <div class="total-row">
+              <span>Total</span>
+              <span id="carritoTotal">$0</span>
+            </div>
+            <button class="btn-checkout" id="btnCheckout">Ir a pagar</button>
+            <a href="productos.html" class="seguir">Seguir comprando</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <h6>OfiExpress</h6>
+        <p class="mb-0">Papelería, oficina y artículos escolares con despacho a todo el país.</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Categorías</h6>
+        <p class="mb-1"><a href="productos.html?cat=Oficina">Oficina</a></p>
+        <p class="mb-1"><a href="productos.html?cat=Escolar">Escolar</a></p>
+        <p class="mb-0"><a href="productos.html#marcas">Marcas</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Ayuda</h6>
+        <p class="mb-1"><a href="#">Despachos</a></p>
+        <p class="mb-1"><a href="#">Cambios y devoluciones</a></p>
+        <p class="mb-0"><a href="#">Contacto</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Síguenos</h6>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-line">© 2026 OfiExpress. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+  /* ================= RENDER: SUGERENCIAS ================= */
+  function renderSugerencias() {
+    document.getElementById("sugerenciasList").innerHTML = sugerencias.map(s => `
+      <div class="sugerencia-item">
+        <div class="icon">
+  ${s.imagen
+    ? `<img src="${s.imagen}" alt="${s.nombre}">`
+    : `<i class="bi ${s.icono}"></i>`}
+</div>
+        <div class="info">
+          <p>${s.nombre}</p>
+          <small>${formatoCLP(s.precio)}</small>
+        </div>
+        <button onclick="agregarAlCarro(${s.id})" title="Añadir" aria-label="Añadir ${s.nombre}"><i class="bi bi-plus"></i></button>
+      </div>
+    `).join("");
+  }
+
+  /* ================= RENDER: CARRO ================= */
+  // (app.js la llama cada vez que el carro cambia)
+  function renderCarrito() {
+    const lista = document.getElementById("carritoLista");
+    const totalUnidades = carrito.reduce((acc, i) => acc + i.cantidad, 0);
+    const totalPrecio = carrito.reduce((acc, i) => acc + i.cantidad * i.precio, 0);
+
+    document.getElementById("carritoSubtotal").textContent = formatoCLP(totalPrecio);
+    document.getElementById("carritoTotal").textContent = formatoCLP(totalPrecio);
+    document.getElementById("carritoCuenta").textContent =
+      totalUnidades ? `(${totalUnidades} ${totalUnidades === 1 ? "unidad" : "unidades"})` : "";
+    document.getElementById("btnVaciar").classList.toggle("d-none", carrito.length === 0);
+
+    if (carrito.length === 0) {
+      lista.innerHTML = `
+        <div class="empty-cart">
+          <i class="bi bi-cart-x"></i>
+          <p class="mb-1">Tu carro está vacío.</p>
+          <small>Agrega productos desde el <a href="productos.html">catálogo</a> o las sugerencias.</small>
+        </div>`;
+      return;
+    }
+
+    lista.innerHTML = carrito.map(item => `
+      <div class="carrito-item">
+        <div class="icon">
+  ${item.imagen
+    ? `<img src="${item.imagen}" alt="${item.nombre}">`
+    : `<i class="bi ${item.icono}"></i>`}
+</div>
+        <div class="info">
+          <p>${item.nombre}</p>
+          <small>${formatoCLP(item.precio)} c/u</small>
+          <div class="qty-control">
+            <button onclick="cambiarCantidad(${item.id}, -1)" aria-label="Quitar una unidad">-</button>
+            <span>${item.cantidad}</span>
+            <button onclick="cambiarCantidad(${item.id}, 1)" aria-label="Agregar una unidad">+</button>
+          </div>
+        </div>
+        <div class="price-col">
+          <div class="fw-semibold">${formatoCLP(item.precio * item.cantidad)}</div>
+          <a href="#" class="remove-link" onclick="eliminarDelCarro(${item.id});return false;">Eliminar</a>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  /* ================= ACCIONES ================= */
+  document.getElementById("btnVaciar").addEventListener("click", vaciarCarro);
+
+  document.getElementById("btnCheckout").addEventListener("click", () => {
+    if (carrito.length === 0) {
+      mostrarToast("Tu carro está vacío");
+      return;
+    }
+    if (!obtenerUsuario()) {
+      mostrarToast("Inicia sesión para continuar con el pago");
+      setTimeout(() => { location.href = "login.html?next=carrito.html"; }, 1400);
+      return;
+    }
+    mostrarToast("Redirigiendo a pago...");
+  });
+
+  /* ================= INIT ================= */
+  renderSugerencias();
+  renderCarrito();
+</script>
+
+</body>
+</html>

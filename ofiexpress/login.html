@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión · OfiExpress</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Estilos compartidos -->
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-ofi navbar-expand-lg sticky-top">
+  <div class="container-fluid px-3 px-lg-4">
+
+    <!-- Hamburguesa -> menú lateral izquierdo -->
+    <button class="btn-icon me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-label="Abrir menú de categorías">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <a class="navbar-brand brand me-3" href="index.html">Ofi<span class="dot">Express</span></a>
+
+    <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-label="Mostrar enlaces">
+      <i class="bi bi-three-dots-vertical text-white fs-4"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html#marcas">Marcas</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Oficina">Oficina</a></li>
+        <li class="nav-item"><a class="nav-link nav-ofi-link" href="productos.html?cat=Escolar">Escolar</a></li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 ms-auto">
+      <a class="btn-icon" href="login.html" id="navSesion" title="Iniciar sesión">
+        <i class="bi bi-person-circle"></i>
+        <span class="nav-user-name d-none d-md-inline" id="navSesionNombre"></span>
+      </a>
+      <a class="btn-icon position-relative" href="carrito.html" title="Carro de compras" aria-label="Ir al carro de compras">
+        <i class="bi bi-cart3"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ===================== OFFCANVAS MENÚ LATERAL ===================== -->
+<div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="menuLateral">
+  <div class="offcanvas-header">
+    <h5 class="mb-0">Categorías</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+  </div>
+  <div class="offcanvas-body p-0">
+    <div class="list-group list-group-flush">
+      <a href="productos.html" class="list-group-item"><i class="bi bi-grid-3x3-gap"></i> Catálogo completo</a>
+      <a href="productos.html#marcas" class="list-group-item"><i class="bi bi-tags"></i> Marcas</a>
+      <a href="productos.html?cat=Oficina" class="list-group-item"><i class="bi bi-briefcase"></i> Oficina</a>
+      <a href="productos.html?cat=Escolar" class="list-group-item"><i class="bi bi-backpack2"></i> Escolar</a>
+      <a href="productos.html?cat=Pintura" class="list-group-item"><i class="bi bi-palette"></i> Arte y manualidades</a>
+      <a href="productos.html?cat=Impresoras" class="list-group-item"><i class="bi bi-printer"></i> Impresoras y tecnología</a>
+      <a href="productos.html?oferta=1" class="list-group-item"><i class="bi bi-percent"></i> Ofertas</a>
+    </div>
+    <div class="px-3 pt-4">
+      <small>¿Necesitas ayuda?</small>
+      <p class="mb-0"><a href="#" class="text-white fw-semibold">Contáctanos <i class="bi bi-arrow-right-short"></i></a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CABECERA ===================== -->
+<section class="hero-strip hero-mini">
+  <p class="hero-eyebrow">Accede para guardar tu carro y pagar más rápido</p>
+  <h1>Mi cuenta</h1>
+</section>
+
+<!-- ===================== LOGIN / REGISTRO ===================== -->
+<section class="auth-section">
+  <div class="container">
+    <div class="auth-card">
+
+      <!-- Vista: formularios -->
+      <div id="vistaFormularios">
+        <div class="auth-tabs nav" role="tablist">
+          <button class="nav-link active" id="tabLogin" data-bs-toggle="tab" data-bs-target="#paneLogin" type="button" role="tab" aria-controls="paneLogin" aria-selected="true">Iniciar sesión</button>
+          <button class="nav-link" id="tabRegistro" data-bs-toggle="tab" data-bs-target="#paneRegistro" type="button" role="tab" aria-controls="paneRegistro" aria-selected="false">Crear cuenta</button>
+        </div>
+
+        <div class="tab-content">
+
+          <!-- Iniciar sesión -->
+          <div class="tab-pane fade show active" id="paneLogin" role="tabpanel" aria-labelledby="tabLogin">
+            <form id="formLogin" novalidate>
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="loginEmail" name="email" required autocomplete="email" placeholder="tu@correo.cl">
+                <div class="invalid-feedback">Ingresa un correo válido.</div>
+              </div>
+              <div class="mb-4">
+                <label for="loginClave" class="form-label">Contraseña</label>
+                <div class="input-group has-validation">
+                  <input type="password" class="form-control" id="loginClave" name="clave" required minlength="6" autocomplete="current-password">
+                  <button class="btn-ojo" type="button" data-ver="loginClave" aria-label="Mostrar contraseña"><i class="bi bi-eye"></i></button>
+                  <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-catalogo w-100">Iniciar sesión</button>
+            </form>
+          </div>
+
+          <!-- Crear cuenta -->
+          <div class="tab-pane fade" id="paneRegistro" role="tabpanel" aria-labelledby="tabRegistro">
+            <form id="formRegistro" novalidate>
+              <div class="mb-3">
+                <label for="regNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="regNombre" name="nombre" required minlength="2" autocomplete="name">
+                <div class="invalid-feedback">Ingresa tu nombre.</div>
+              </div>
+              <div class="mb-3">
+                <label for="regEmail" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="regEmail" name="email" required autocomplete="email" placeholder="tu@correo.cl">
+                <div class="invalid-feedback">Ingresa un correo válido.</div>
+              </div>
+              <div class="mb-3">
+                <label for="regClave" class="form-label">Contraseña</label>
+                <div class="input-group has-validation">
+                  <input type="password" class="form-control" id="regClave" name="clave" required minlength="6" autocomplete="new-password">
+                  <button class="btn-ojo" type="button" data-ver="regClave" aria-label="Mostrar contraseña"><i class="bi bi-eye"></i></button>
+                  <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label for="regConfirmar" class="form-label">Repite la contraseña</label>
+                <input type="password" class="form-control" id="regConfirmar" name="confirmar" required autocomplete="new-password">
+                <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+              </div>
+              <button type="submit" class="btn btn-catalogo w-100">Crear cuenta</button>
+            </form>
+          </div>
+
+        </div>
+
+        <p class="auth-note">Demostración: el acceso es simulado y no se conecta a un servidor. La contraseña no se guarda.</p>
+      </div>
+
+      <!-- Vista: sesión iniciada -->
+      <div id="vistaSesion" class="sesion-panel d-none">
+        <div class="sesion-avatar" id="sesionAvatar">?</div>
+        <h2 id="sesionNombre"></h2>
+        <p id="sesionEmail"></p>
+        <div class="d-grid gap-2 mt-3">
+          <a href="productos.html" class="btn btn-catalogo">Ver productos</a>
+          <a href="carrito.html" class="btn-outline-ofi">Ir a mi carro</a>
+        </div>
+        <button class="btn-logout" id="btnLogout" type="button"><i class="bi bi-box-arrow-right me-1"></i>Cerrar sesión</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <h6>OfiExpress</h6>
+        <p class="mb-0">Papelería, oficina y artículos escolares con despacho a todo el país.</p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Categorías</h6>
+        <p class="mb-1"><a href="productos.html?cat=Oficina">Oficina</a></p>
+        <p class="mb-1"><a href="productos.html?cat=Escolar">Escolar</a></p>
+        <p class="mb-0"><a href="productos.html#marcas">Marcas</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Ayuda</h6>
+        <p class="mb-1"><a href="#">Despachos</a></p>
+        <p class="mb-1"><a href="#">Cambios y devoluciones</a></p>
+        <p class="mb-0"><a href="#">Contacto</a></p>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Síguenos</h6>
+        <div class="d-flex gap-3 fs-5">
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-line">© 2026 OfiExpress. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+
+  // Solo se permite volver a páginas locales simples (ej: carrito.html)
+  const paramNext = new URLSearchParams(location.search).get("next") || "";
+  const destino = /^[a-z]+\.html$/i.test(paramNext) ? paramNext : null;
+
+  function nombreDesdeEmail(email) {
+    const base = email.split("@")[0].replace(/[._-]+/g, " ").trim();
+    return base.charAt(0).toUpperCase() + base.slice(1);
+  }
+
+  function mostrarVista() {
+    const u = obtenerUsuario();
+    $("vistaFormularios").classList.toggle("d-none", !!u);
+    $("vistaSesion").classList.toggle("d-none", !u);
+    if (u) {
+      $("sesionNombre").textContent = "Hola, " + u.nombre;
+      $("sesionEmail").textContent = u.email;
+      $("sesionAvatar").textContent = u.nombre.charAt(0).toUpperCase();
+    }
+  }
+
+  function completarAcceso(usuario) {
+    iniciarSesion(usuario);
+    if (destino) {
+      location.href = destino;
+      return;
+    }
+    mostrarVista();
+    mostrarToast("Sesión iniciada");
+  }
+
+  /* --- Mostrar / ocultar contraseña --- */
+  document.querySelectorAll("[data-ver]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = $(btn.dataset.ver);
+      const mostrar = input.type === "password";
+      input.type = mostrar ? "text" : "password";
+      btn.querySelector("i").className = mostrar ? "bi bi-eye-slash" : "bi bi-eye";
+      btn.setAttribute("aria-label", mostrar ? "Ocultar contraseña" : "Mostrar contraseña");
+    });
+  });
+
+  /* --- Iniciar sesión --- */
+  $("formLogin").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.target;
+    if (!form.checkValidity()) {
+      form.classList.add("was-validated");
+      return;
+    }
+    const email = form.email.value.trim();
+    completarAcceso({ nombre: nombreDesdeEmail(email), email });
+    form.reset();
+    form.classList.remove("was-validated");
+  });
+
+  /* --- Crear cuenta --- */
+  function validarCoincidencia() {
+    const f = $("formRegistro");
+    f.confirmar.setCustomValidity(f.confirmar.value === f.clave.value ? "" : "No coinciden");
+  }
+  $("regClave").addEventListener("input", validarCoincidencia);
+  $("regConfirmar").addEventListener("input", validarCoincidencia);
+
+  $("formRegistro").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.target;
+    validarCoincidencia();
+    if (!form.checkValidity()) {
+      form.classList.add("was-validated");
+      return;
+    }
+    completarAcceso({ nombre: form.nombre.value.trim(), email: form.email.value.trim() });
+    form.reset();
+    form.classList.remove("was-validated");
+  });
+
+  /* --- Cerrar sesión --- */
+  $("btnLogout").addEventListener("click", () => {
+    cerrarSesion();
+    mostrarVista();
+  });
+
+  mostrarVista();
+</script>
+
+</body>
+</html>
